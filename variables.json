@@ -1,4 +1,5 @@
 {
+    "template_name": "Ubuntu",
     "remote_host": "esx-host",
     "remote_datastore": "datastore1",
     "remote_username": "esx-account",

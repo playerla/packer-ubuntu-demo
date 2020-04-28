@@ -2,6 +2,7 @@
     "builders": [
         {
             "type": "vmware-iso",
+            "name": "{{user `template_name`}}",
             "remote_type": "esx5",
             "remote_host": "{{user `remote_host`}}",
             "remote_username": "{{user `remote_username`}}",
