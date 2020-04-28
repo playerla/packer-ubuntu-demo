@@ -23,5 +23,9 @@ esxcli network firewall ruleset set --enabled=true --ruleset-id=httpClient
 ### Run
 
 ```sh
-packer build ubuntu.json
+packer build -var-file variables.json template.json
 ```
+
+### Generated template
+
+Default username and password is `template`, defined in preseed.cfg and used in template.json

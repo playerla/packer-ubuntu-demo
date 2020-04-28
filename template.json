@@ -1,0 +1,63 @@
+{
+    "builders": [
+        {
+            "type": "vmware-iso",
+            "remote_type": "esx5",
+            "remote_host": "{{user `remote_host`}}",
+            "remote_username": "{{user `remote_username`}}",
+            "remote_password": "{{user `remote_password`}}",
+            "remote_datastore": "{{user `remote_datastore`}}",
+            "ssh_username": "template",
+            "ssh_password": "template",
+            "network": "{{user `network`}}",
+            "http_directory": "http",
+            "http_port_min": 80,
+            "http_port_max": 80,
+            "iso_checksum_type": "file",
+            "iso_checksum": "{{user `ubuntu_or_debian_checksum_file`}}",
+            "iso_url": "{{user `ubuntu_or_debian_iso`}}",
+            "vnc_disable_password": true,
+            "vmx_data": {
+                "ethernet0.networkName": "{{user `vm_network`}}",
+                "ethernet0.present": "TRUE",
+                "ethernet0.startConnected": "TRUE",
+                "ethernet0.virtualDev": "vmxnet3",
+                "ethernet0.addressType": "generated",
+                "ethernet0.wakeOnPcktRcv": "FALSE"
+            },
+            "boot_command": [
+                "<enter><wait><f6><wait><esc><wait>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+                "<bs><bs><bs>",
+                "/install/vmlinuz",
+                " initrd=/install/initrd.gz",
+                " priority=critical",
+                " locale=en_US",
+                " netcfg/disable_dhcp=true",
+                " netcfg/disable_autoconfig=true",
+                " netcfg/confirm_static=true",
+                " netcfg/get_ipaddress=10.0.0.200",
+                " netcfg/get_netmask=255.255.255.0",
+                " netcfg/get_gateway=10.0.0.254",
+                " netcfg/get_nameservers=10.0.0.254",
+                " preseed/url=http://{{ .HTTPIP }}/preseed.cfg",
+                "<enter>"
+            ]
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "ls /"
+            ]
+        }
+    ]
+}

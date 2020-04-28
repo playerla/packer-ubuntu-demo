@@ -1,0 +1,9 @@
+{
+    "remote_host": "esx-host",
+    "remote_datastore": "datastore1",
+    "remote_username": "esx-account",
+    "remote_password": "esx-password",
+    "ubuntu_or_debian_iso": "http://releases.ubuntu.com/16.04/ubuntu-16.04.6-server-amd64.iso",
+    "ubuntu_or_debian_checksum_file": "http://releases.ubuntu.com/16.04/SHA256SUMS",
+    "vm_network": "VM Network"
+}
